@@ -1,0 +1,31 @@
+@import 'swiper/css/bundle';
+@import "@fortawesome/fontawesome-free/css/all.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes ani {
+    0% {
+        box-shadow: 0 0 0 0px #0891b2;
+    }
+
+    25% {
+        box-shadow: 0 0 0 5px #0891b2;
+    }
+
+    50% {
+        box-shadow: 0 0 0 0px #0891b2;
+    }
+
+    75% {
+        box-shadow: 0 0 0 5px #0891b2;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0px #0891b2;
+    }
+}
+
+.animationjs {
+    animation: ani 1s ease-in-out both;
+}
