@@ -42,6 +42,12 @@
                     <li class="whitespace-nowrap"><a class="px-2 py-4 transition-all hover:bg-neutral-100 block" href="{{ route('wishlist.index') }}">Wish List</a></li>
                     <li class="whitespace-nowrap"><a class="px-2 py-4 transition-all hover:bg-neutral-100 block" href="#">Recommendations</a></li>
                     <li class="whitespace-nowrap"><a class="px-2 py-4 transition-all hover:bg-neutral-100 block" href="#">Browsing History</a></li>
+                    <li class="whitespace-nowrap">
+                        <form action="{{ route("logout") }}" method="POST">
+                            @csrf
+                            <button class="px-2 py-4 transition-all hover:bg-neutral-100 block text-red-500 w-full text-left" type="submit">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </li>
         @endauth

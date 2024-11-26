@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title')Wishlist - @parent @endsection
+
 @section('main')
     <div class="max-w-screen-xl w-full mx-auto py-10">
         <h1 class="text-4xl font-bold mb-5">Wishlist</h1>
@@ -16,7 +18,7 @@
                             <div>price: ${{ number_format($item->product->price, 2) }}
                             </div>
                         </div>
-                        <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                        <form action="{{ route('wishlist.destroy', $item->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button

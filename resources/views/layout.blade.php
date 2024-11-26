@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Cart - Easy Shop - Affordable Online Shopping for Everyone</title>
+    <title>@section('title')Easy Shop - Affordable Online Shopping for Everyone @show</title>
     @include('includes.head')
 </head>
 

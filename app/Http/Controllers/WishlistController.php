@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -60,6 +61,9 @@ class WishlistController extends Controller
      */
     public function destroy(Wishlist $wishlist)
     {
-        //
+        if ($wishlist->user_id == Auth::id()) {
+            $wishlist->delete();
+            return redirect()->route("wishlist.index");
+        }
     }
 }

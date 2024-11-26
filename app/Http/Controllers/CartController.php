@@ -86,10 +86,10 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        if ($cart->user_id == Auth::id()) {
-            $cart->delete();
-            return redirect()->route("cart.index");
-        }
+            if ($cart->user_id == Auth::id()) {
+                $cart->delete();
+                return redirect()->route("cart.index");
+            }
     }
 
     public function checkout()
