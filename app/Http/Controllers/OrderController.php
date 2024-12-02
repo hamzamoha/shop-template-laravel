@@ -15,6 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
+        if (request()->wantsJson()) {
+            return Order::with(['user', 'shippingAddress', 'billingAddress', 'items.product'])->paginate(60);
+        }
         return view("orders.index");
     }
 

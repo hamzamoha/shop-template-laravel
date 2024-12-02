@@ -29,3 +29,7 @@
 .animationjs {
     animation: ani 1s ease-in-out both;
 }
+
+label {
+    user-select: none;
+}
