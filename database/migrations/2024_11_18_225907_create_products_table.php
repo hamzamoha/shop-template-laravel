@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // Auto-incrementing primary key
             $table->string('name'); // Product name
             $table->string('slug')->unique(); // Product name
+            $table->string('sku')->unique();
             $table->text('description'); // Product description
             $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('category_id')->nullable();

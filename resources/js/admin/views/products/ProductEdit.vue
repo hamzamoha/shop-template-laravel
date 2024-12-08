@@ -57,6 +57,7 @@ export default {
             }).then(d => {
                 this.response.message = { ...d, data: undefined }
                 d.data ? this.product = d.data : null
+                this.$emit('load-products')
             })
                 .then(() => this.response.status == 200 ? setTimeout(() => this.$router.push({ name: "products.show", params: { slug: this.product.slug } }), 2000) : null)
                 .catch(e => console.error(e));

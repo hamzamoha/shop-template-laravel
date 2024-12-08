@@ -48,16 +48,23 @@ class ProductController extends Controller
                 'stock' => 'required|integer|min:0',
                 'image' => 'nullable|sometimes|image|max:2048',
             ]);
-
             $slug = Str::slug($validated['name'], '-');
             $slug = $this->generateUniqueSlug($slug);
-
             // Create product
             $product = new Product($validated);
             $product->slug = $slug;
-
+            $product->sku = (function () {
+                $id = Product::max('id') + 1;
+                $f = "";
+                $n = intdiv($id, 1000);
+                while ($n > 0) {
+                    $f = chr($n % 26 + 65) . $f;
+                    $n = intdiv($n, 26);
+                }
+                $f = Str::padLeft($f, 3, "A");
+                return "SKU-$f-1" . Str::padLeft($id % 1000, 3, "0");
+            })();
             if ($request->hasFile('image')) {
-                // Handle image upload
                 try {
                     $imageName = $slug . '-' . time() . '.' . $request->file('image')->extension();
                     $product->image = "/storage/" . $request->file('image')->storeAs('products', $imageName, 'public');
@@ -69,10 +76,7 @@ class ProductController extends Controller
                     ], 400);
                 }
             }
-
-            // Save the product
             $product->save();
-
             return response()->json([
                 'success' => true,
                 'message' => 'Product created successfully.',
@@ -152,7 +156,6 @@ class ProductController extends Controller
                     if ($product->image) {
                         //Storage::disk('public')->delete($product->image);
                     }
-
                     $imageName = $slug . '-' . time() . '.' . $request->file('image')->extension();
                     $product->image_url = "/storage/" . $request->file('image')->storeAs('products', $imageName, 'public');
                 } catch (\Exception $e) {
@@ -163,10 +166,8 @@ class ProductController extends Controller
                     ], 400);
                 }
             }
-
             // Save the product
             $product->save();
-
             return response()->json([
                 'success' => true,
                 'message' => 'Product updated successfully.',

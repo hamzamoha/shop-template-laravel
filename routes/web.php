@@ -3,10 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +32,9 @@ Route::middleware("auth:admin")->prefix("api")->name("api.")->group(function () 
     Route::resource("categories", CategoryController::class);
     Route::resource("orders", OrderController::class);
     Route::resource("users", UserController::class);
+    Route::resource("discounts", DiscountController::class);
+    Route::resource("inventory", InventoryController::class)->only(['index', 'update']);
+    Route::resource("shipping", ShippingController::class)->only(['index', 'store', 'update']);
 });
 
 Route::get('/dashboard', function () {

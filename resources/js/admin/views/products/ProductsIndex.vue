@@ -32,7 +32,7 @@
                             <div class="flex items-center gap-0.5">
                                 <router-link :to="{ name: 'products.show', params: { slug: product.slug } }" class="block py-0.5 px-1 text-xs font-bold bg-sky-500 rounded hover:bg-sky-400 transition-all">Show</router-link>
                                 <router-link :to="{ name: 'products.edit', params: { slug: product.slug } }" class="block py-0.5 px-1 text-xs font-bold bg-emerald-500 rounded hover:bg-emerald-400 transition-all">Edit</router-link>
-                                <button @click="deleteProduct(product)" class="block py-0.5 px-1 text-xs font-bold bg-red-500 rounded hover:bg-red-400 transition-all">Delete</button>
+                                <button @click="setProduct(product)" class="block py-0.5 px-1 text-xs font-bold bg-red-500 rounded hover:bg-red-400 transition-all">Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -43,6 +43,24 @@
                     <span v-if="(pagination.start + i - 1) == products.current_page" class="px-2 py-1 rounded bg-gray-200 text-black">{{ pagination.start + i - 1 }}</span>
                     <button v-else @click="$emit('load-products', pagination.start + i - 1)" class="px-2 py-1 rounded bg-cyan-600 text-white" href="#">{{ pagination.start + i - 1 }}</button>
                 </template>
+            </div>
+        </div>
+        <div v-if="product" class="absolute top-0 left-0 w-screen h-screen flex justify-center items-center p-5">
+            <div class="bg-white p-6 rounded-lg shadow-md max-h-full max-w-full overflow-auto">
+                <h2 class="text-2xl font-bold text-cyan-600 mb-4">Confirm Delete?</h2>
+                <div class="flex gap-4 mb-4">
+                    <div class="grow-0 shrink-0 w-20 h-20 rounded border overflow-hidden">
+                        <img :src="product.image_url" alt="" class="h-full w-full object-contain">
+                    </div>
+                    <div class="">
+                        <h2 class="text-xl font-bold mb-2">{{ product.name }}</h2>
+                        <div>${{ product.price }}</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="py-2 rounded bg-gray-300 transition-all hover:bg-gray-200" @click="product = null">Cancel</button>
+                    <button class="py-2 rounded bg-red-600 transition-all hover:bg-red-700 text-white" @click="deleteProduct">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -67,6 +85,7 @@ export default {
                 status: null,
                 b: null
             },
+            product: null,
         }
     },
     watch: {
@@ -83,11 +102,9 @@ export default {
         },
     },
     methods: {
-        deleteProduct(product) {
-            fetch("/api/products/" + product.slug, {
-                body: JSON.stringify({
-                    _method: 'DELETE',
-                }),
+        deleteProduct() {
+            fetch("/api/products/" + this.product.slug, {
+                body: JSON.stringify({ _method: 'DELETE' }),
                 method: 'POST',
                 headers: {
                     Accept: "application/json",
@@ -95,15 +112,17 @@ export default {
                     "X-CSRF-Token": document.head.querySelector('meta[name="csrf-token"]').content,
                 }
             }).then(r => {
+                this.product = null
                 this.r.status = r.status
                 return r.json()
             }).then(b => {
-                document.querySelector("main").scrollTo(0,0)
+                document.querySelector("main").scrollTo(0, 0)
                 this.r.b = b
                 this.$emit('load-products')
-                setTimeout(() => this.r = {b: null, status: null}, 1000);
+                setTimeout(() => this.r = { b: null, status: null }, 1000);
             }).catch(e => console.log(e));
-        }
+        },
+        setProduct(product) { this.product = product },
     },
 }
 </script>

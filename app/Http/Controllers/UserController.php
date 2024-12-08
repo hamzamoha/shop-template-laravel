@@ -38,7 +38,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        if(request()->wantsJson()){
+            return response()->json($user->load(['orders', 'cart.product', 'wishlist.product', 'addresses']));
+        }
     }
 
     /**
