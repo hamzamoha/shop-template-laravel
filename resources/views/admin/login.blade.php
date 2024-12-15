@@ -22,7 +22,7 @@
 				@guest("admin")
 					<h1 class="mb-5 text-center font-display text-5xl font-bold">Guest</h1>
 				@endguest
-				<form action="{{ route("admin.index") }}" method="POST">
+				<form action="{{ route("admin.index", [], false) }}" method="POST">
 					@csrf
 					<div class="mb-5">
 						<label class="block py-1 text-sm" for="email">Email</label>

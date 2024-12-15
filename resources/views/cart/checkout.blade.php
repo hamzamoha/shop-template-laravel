@@ -37,7 +37,7 @@
 			<h1 class="mb-5 text-4xl font-bold">Checkout</h1>
 			@if (count(auth()->user()->cart) > 0)
 				<div class="flex gap-5">
-					<form method="POST" class="flex-1" action="{{ route("orders.store") }}">
+					<form method="POST" class="flex-1" action="{{ route('orders.store', [], false) }}">
 						{{ csrf_field() }}
 						<div class="mb-3 flex flex-1 flex-col gap-3">
 							<h2 class="mb-5 text-3xl font-bold">Address</h2>

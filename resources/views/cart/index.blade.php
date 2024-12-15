@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex items-center justify-end">
                             <a class="block px-4 py-2 rounded bg-cyan-600 text-white transition-all hover:bg-cyan-500 font-bold text-lg"
-                                href="{{ route('checkout') }}">Check Out <i class="fa-solid fa-angles-right"></i></a>
+                                href="{{ route('checkout', [], false) }}">Check Out <i class="fa-solid fa-angles-right"></i></a>
                         </div>
                     </div>
                     <div class="max-w-1/3 w-[300px]">

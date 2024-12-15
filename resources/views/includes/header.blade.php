@@ -1,6 +1,6 @@
 <header>
 	<ul class="flex h-16 items-center gap-3 px-1 py-2 shadow-sm md:h-20 md:px-2 md:py-4 lg:gap-5 lg:px-5">
-		<a href="{{ route("home") }}" class="h-full w-24 md:w-32 lg:w-40">
+		<a href="{{ route('home', [], false) }}" class="h-full w-24 md:w-32 lg:w-40">
 			<img src="/images/logo.png" alt="Logo" class="h-full w-full object-contain">
 		</a>
 		<li class="h-full flex-1">
@@ -11,13 +11,13 @@
 		</li>
 		@auth
 			<li class="relative shrink-0 text-lg lg:text-xl">
-				<a href="{{ route("cart.index") }}" class="block">
+				<a href="{{ route('cart.index', [], false) }}" class="block">
 					<i class="fa-solid fa-cart-shopping"></i>
 					<span id="cart_count" class="absolute -bottom-2 -left-2 flex h-4 w-4 items-center justify-center rounded-full bg-cyan-600 text-center text-xs font-bold text-white">{{ auth()->user()->cart->count() }}</span>
 				</a>
 			</li>
 			<li class="relative shrink-0 text-lg lg:text-xl">
-				<a href="{{ route("wishlist.index") }}" class="block">
+				<a href="{{ route('wishlist.index', [], false) }}" class="block">
 					<i class="fa-regular fa-heart"></i>
 					<span id="wishlist_count" class="absolute -bottom-2 -left-2 flex h-4 w-4 items-center justify-center rounded-full bg-cyan-600 text-center text-xs font-bold text-white">{{ 0 }}</span>
 				</a>
@@ -34,12 +34,12 @@
 				</button>
 				<ul class="absolute right-0 top-full z-[2] flex hidden flex-col gap-2 rounded border bg-white py-2 shadow">
 					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="#">Account</a></li>
-					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="{{ route("orders.index") }}">Orders</a></li>
-					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="{{ route("wishlist.index") }}">Wish List</a></li>
+					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="{{ route('orders.index', [], false) }}">Orders</a></li>
+					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="{{ route('wishlist.index', [], false) }}">Wish List</a></li>
 					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="#">Recommendations</a></li>
 					<li class="whitespace-nowrap"><a class="block px-2 py-4 transition-all hover:bg-neutral-100" href="#">Browsing History</a></li>
 					<li class="whitespace-nowrap">
-						<form action="{{ route("logout") }}" method="POST">
+						<form action="{{ route('logout', [], false) }}" method="POST">
 							@csrf
 							<button class="block w-full px-2 py-4 text-left text-red-500 transition-all hover:bg-neutral-100" type="submit">Logout</button>
 						</form>
@@ -48,9 +48,9 @@
 			</li>
 		@endauth
 		@guest
-			<li class="shrink-0"><a href="{{ route("login") }}" class="block rounded-full border bg-gray-600 px-6 py-2 font-medium text-white transition-all hover:bg-gray-500"><i class="fa-solid fa-lock"></i> Login</a></li>
+			<li class="shrink-0"><a href="{{ route('login', [], false) }}" class="block rounded-full border bg-gray-600 px-6 py-2 font-medium text-white transition-all hover:bg-gray-500"><i class="fa-solid fa-lock"></i> Login</a></li>
 			<li>OR</li>
-			<li class="shrink-0"><a href="{{ route("register") }}" class="block rounded-full border bg-cyan-600 px-6 py-2 font-medium text-white transition-all hover:bg-cyan-500"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+			<li class="shrink-0"><a href="{{ route('register', [], false) }}" class="block rounded-full border bg-cyan-600 px-6 py-2 font-medium text-white transition-all hover:bg-cyan-500"><i class="fa-solid fa-user-plus"></i> Register</a></li>
 		@endguest
 	</ul>
 </header>

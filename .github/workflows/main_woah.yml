@@ -34,6 +34,9 @@ jobs:
       - name: Run npm i
         run: npm install && npm run build
 
+      - name: Remove node_modules
+        run: rm -rdf node_modules
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* .env -r
 
@@ -62,7 +65,7 @@ jobs:
         run: unzip release.zip
 
       - name: Delete the zip file
-        run: rm release.zip
+        run: rm -f release.zip
       
       - name: Login to Azure
         uses: azure/login@v2

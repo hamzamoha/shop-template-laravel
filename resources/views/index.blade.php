@@ -90,7 +90,7 @@
 			</h2>
 			<div class="grid grid-cols-3 gap-5 px-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
 				@foreach ($categories as $category)
-					<a class="block flex h-14 items-center rounded-lg border border-cyan-600 p-2 text-sm transition-all hover:bg-gray-100 sm:h-16 sm:text-base" href="{{ route("products.index") }}">
+					<a class="block flex h-14 items-center rounded-lg border border-cyan-600 p-2 text-sm transition-all hover:bg-gray-100 sm:h-16 sm:text-base" href="{{ route('products.index', [], false) }}">
 						<span class="icon-furniture mr-2 text-2xl text-cyan-600 sm:text-3xl"></span>
 						<span>{{ $category->name }}</span>
 					</a>

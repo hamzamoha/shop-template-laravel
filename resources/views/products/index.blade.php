@@ -74,7 +74,7 @@
 												<button id="add_to_cart" data-product-id="{{ $product->id }}" class="block w-full rounded bg-cyan-600 py-1 text-white transition-all hover:bg-cyan-500">Add to Cart</button>
 											@endauth
 											@guest
-												<a href="{{ route("login") }}" class="group block w-full rounded bg-cyan-600 py-1 text-center text-white hover:bg-gray-200 hover:text-black">
+												<a href="{{ route('login', [], false) }}" class="group block w-full rounded bg-cyan-600 py-1 text-center text-white hover:bg-gray-200 hover:text-black">
 													<span class="hidden group-hover:block">Login Required</span>
 													<span class="block group-hover:hidden">Add to Cart</span>
 												</a>
