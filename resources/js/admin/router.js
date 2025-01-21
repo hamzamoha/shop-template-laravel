@@ -4,18 +4,13 @@ import ProductsIndex from './views/products/ProductsIndex.vue';
 import ProductCreate from "./views/products/ProductCreate.vue";
 import ProductShow from './views/products/ProductShow.vue';
 import ProductEdit from "./views/products/ProductEdit.vue";
-
 import CategoriesIndex from './views/categories/CategoriesIndex.vue';
-
 import OrderIndex from './views/orders/OrderIndex.vue';
-
 import CustomersIndex from './views/customers/CustomersIndex.vue';
-
 import DiscountsIndex from './views/discounts/DiscountsIndex.vue';
-
 import InventoryIndex from './views/inventory/InventoryIndex.vue';
-
 import ShippingIndex from './views/shipping/ShippingIndex.vue';
+import Settings from './views/settings/Settings.vue';
 
 const routes = [
     { path: '/', component: Home, name: 'Home' },
@@ -29,6 +24,7 @@ const routes = [
     { path: '/discounts', component: DiscountsIndex, name: 'discounts.index' },
     { path: '/inventory', component: InventoryIndex, name: 'inventory.index' },
     { path: '/shipping', component: ShippingIndex, name: 'shipping.index' },
+    { path: '/settings', component: Settings, name: 'settings' },
 ];
 
 const router = createRouter({

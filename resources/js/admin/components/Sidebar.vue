@@ -75,7 +75,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/" :class="(sidebar ? 'px-4' : '') + ' block h-16 flex items-center rounded hover:text-white hover:bg-cyan-600 transition-all group'">
+                    <router-link :to="{name: 'settings'}" :class="(sidebar ? 'px-4' : '') + ' block h-16 flex items-center rounded hover:text-white hover:bg-cyan-600 transition-all group'">
                         <span :class="(sidebar ? 'pr-2' : 'block w-16 shrink-0 text-center') + ' transition-[width,padding] text-xl relative'">
                             <i class="fa-solid fa-gear"></i>
                             <span v-if="!sidebar" class="group-hover:opacity-100 group-hover:visible invisible transition-opacity opacity-0 py-1 px-2 absolute top-1/2 -translate-y-1/2 left-[115%] text-white bg-black rounded text-sm after:absolute after:top-1/2 after:-translate-y-1/2 after:right-full after:border-y-8 after:border-y-transparent after:border-r-8 after:border-r-black">Settings</span>
